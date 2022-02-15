@@ -1,0 +1,27 @@
+spring:
+  #database config
+  datasource:
+    url: jdbc:mysql://localhost:3306/mz_db_sample?useSSL=false
+    username: root
+    password: mzMysql123@
+  #spring jpa config
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  #spring security config
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 360175432143-0n8l0o51fa6lb3bnjer35nu7qb3mjlas.apps.googleusercontent.com
+            clientSecret: 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
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
