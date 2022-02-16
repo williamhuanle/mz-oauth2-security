@@ -41,7 +41,7 @@ public class AuthController {
 //    private TokenProvider tokenProvider;
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public AuthResponse authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -53,11 +53,11 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         //TODO String token = tokenProvider.createToken(authentication);
-        return ResponseEntity.ok(new AuthResponse("token", "Bearer"));
+        return new AuthResponse("token", "Bearer");
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+    public ApiResponse registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         if(userRepository.existsByEmail(signUpRequest.getEmail())) {
             throw new BadRequestException("Email address already in use.");
         }
@@ -77,8 +77,7 @@ public class AuthController {
                 .fromCurrentContextPath().path("/user/me")
                 .buildAndExpand(result.getId()).toUri();
 
-        return ResponseEntity.created(location)
-                .body(new ApiResponse(true, "User registered successfully!"));
+        return new ApiResponse(true, "User registered successfully!");
     }
 
 }

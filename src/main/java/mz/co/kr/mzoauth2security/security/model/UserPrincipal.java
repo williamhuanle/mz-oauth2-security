@@ -1,4 +1,4 @@
-package mz.co.kr.mzoauth2security.security;
+package mz.co.kr.mzoauth2security.security.model;
 
 import mz.co.kr.mzoauth2security.entity.User;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,8 +1,9 @@
-package mz.co.kr.mzoauth2security.security;
+package mz.co.kr.mzoauth2security.security.services;
 
 import mz.co.kr.mzoauth2security.entity.User;
 import mz.co.kr.mzoauth2security.exception.ResourceNotFoundException;
 import mz.co.kr.mzoauth2security.repository.UserRepository;
+import mz.co.kr.mzoauth2security.security.model.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
