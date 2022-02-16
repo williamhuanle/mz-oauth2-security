@@ -5,11 +5,11 @@ import mz.co.kr.mzoauth2security.enums.OAuth2Provider;
 import mz.co.kr.mzoauth2security.exception.BadRequestException;
 import mz.co.kr.mzoauth2security.payload.ApiResponse;
 import mz.co.kr.mzoauth2security.payload.AuthResponse;
-import mz.co.kr.mzoauth2security.payload.LoginRequest;
+import mz.co.kr.mzoauth2security.payload.SignInRequest;
 import mz.co.kr.mzoauth2security.payload.SignUpRequest;
 import mz.co.kr.mzoauth2security.repository.UserRepository;
+import mz.co.kr.mzoauth2security.security.jwt.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,23 +37,23 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//    @Autowired
-//    private TokenProvider tokenProvider;
+    @Autowired
+    private TokenProvider tokenProvider;
 
     @PostMapping("/login")
-    public AuthResponse authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public AuthResponse authenticateUser(@Valid @RequestBody SignInRequest signInRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getEmail(),
-                        loginRequest.getPassword()
+                        signInRequest.getEmail(),
+                        signInRequest.getPassword()
                 )
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        //TODO String token = tokenProvider.createToken(authentication);
-        return new AuthResponse("token", "Bearer");
+        String token = tokenProvider.createToken(authentication);
+        return new AuthResponse(token, "Bearer");
     }
 
     @PostMapping("/signup")
