@@ -25,6 +25,26 @@ spring:
             scope:
               - email
               - profile
+#            facebook:
+#              clientId: 121189305185277
+#              clientSecret: 42ffe5aa7379e8326387e0fe16f34132
+#              redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+#              scope:
+#                - email
+#                - public_profile
+#            github:
+#              clientId: d3e47fc2ddd966fa4352
+#              clientSecret: 3bc0f6b8332f93076354c2a5bada2f5a05aea60d
+#              redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+#              scope:
+#                - user:email
+#                - read:user
+#          provider:
+#            facebook:
+#              authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+#              tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+#              userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+
 mz-app:
   jwtAuth:
     tokenSecret: 5R0ztqkws.I7njY-2&hHz+1s8Ih==y<GY!3a5RYn+Dz'<upv$MYevaux5uJsi!4
